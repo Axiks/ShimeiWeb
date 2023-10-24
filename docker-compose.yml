@@ -39,7 +39,7 @@ services:
     restart: unless-stopped
     command: tunnel run
     environment:
-      - TUNNEL_TOKEN=eyJhIjoiZjc4NzAxZTE1MzA5ZmIwYjFhN2M2MmQwMWE3OTdiZTYiLCJ0IjoiMzE5ZGI4NDAtOWNlZi00OTNlLTg1ZmUtZDQ1OGFlODNmNGYwIiwicyI6Ik5qTTVaVE15T0RZdE0yRTFPQzAwTm1VeUxUazFZMlV0WkdZeU1qTmtPRFZpTVRVdyJ9
+      - TUNNEL_TOKEN= # Write you token!
     networks:
         shimei-network-api:
             ipv4_address: 172.30.0.5
