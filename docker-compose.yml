@@ -1,0 +1,45 @@
+version: '3.4'
+
+networks:
+  shimei-network-api:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.30.0.0/16
+
+services:
+  japanesepersongeneratorapi:
+    image: ${DOCKER_REGISTRY-}japanesepersongeneratorapi
+    container_name: shimei-api
+    ports:
+        - "448:443"
+    build:
+      context: .
+      dockerfile: JapanesePersonGeneratorApi/Dockerfile
+    restart: always
+    networks:
+        shimei-network-api:
+            ipv4_address: 172.30.0.3
+
+  japanesepersongeneratorspa:
+    container_name: shimei-spa
+    ports:
+        - "2092:80"
+    build:
+      context: .
+      dockerfile: japanesepersongenerator.spa/Dockerfile
+    restart: always
+    networks:
+        shimei-network-api:
+            ipv4_address: 172.30.0.8
+
+  shimei-tunnel-api:
+    container_name: shimei-cloudflared-tunnel-api
+    image: cloudflare/cloudflared
+    restart: unless-stopped
+    command: tunnel run
+    environment:
+      - TUNNEL_TOKEN=eyJhIjoiZjc4NzAxZTE1MzA5ZmIwYjFhN2M2MmQwMWE3OTdiZTYiLCJ0IjoiMzE5ZGI4NDAtOWNlZi00OTNlLTg1ZmUtZDQ1OGFlODNmNGYwIiwicyI6Ik5qTTVaVE15T0RZdE0yRTFPQzAwTm1VeUxUazFZMlV0WkdZeU1qTmtPRFZpTVRVdyJ9
+    networks:
+        shimei-network-api:
+            ipv4_address: 172.30.0.5
