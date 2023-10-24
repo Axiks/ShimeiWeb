@@ -24,11 +24,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-/*app.UseCors(builder =>
-        builder
-        .WithOrigins("http://domain.com")
-        .AllowAnyMethod()
-        .AllowAnyHeader());*/
 app.UseCors("AllowAll");
 
 app.UseHttpsRedirection();

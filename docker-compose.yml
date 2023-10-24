@@ -16,10 +16,10 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=${CERT_PASS}
-      - ASPNETCORE_Kestrel__Certificates__Default__Path=${CERT_PATH}
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=$CERT_PASS
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=$CERT_PATH
     volumes:
-     - ./https:/https:ro
+      - ~/.aspnet/https:/https:ro
     build:
       context: .
       dockerfile: JapanesePersonGeneratorApi/Dockerfile
@@ -46,7 +46,7 @@ services:
     restart: unless-stopped
     command: tunnel run
     environment:
-      - TUNNEL_TOKEN={TUNEL_TOKEN}
+      - TUNNEL_TOKEN=${TUNEL_TOKEN}
     networks:
         shimei-network-api:
             ipv4_address: 172.30.0.5

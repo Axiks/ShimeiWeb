@@ -11,6 +11,7 @@ COPY ["JapanesePersonGeneratorApi/JapanesePersonGeneratorApi.csproj", "JapaneseP
 RUN dotnet restore "JapanesePersonGeneratorApi/JapanesePersonGeneratorApi.csproj"
 COPY . .
 WORKDIR "/src/JapanesePersonGeneratorApi"
+RUN dotnet dev-certs https --trust
 RUN dotnet build "JapanesePersonGeneratorApi.csproj" -c Release -o /app/build
 
 FROM build AS publish
@@ -19,4 +20,5 @@ RUN dotnet publish "JapanesePersonGeneratorApi.csproj" -c Release -o /app/publis
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+COPY --from=build /root/.dotnet/corefx/cryptography/x509stores/my/* /root/.dotnet/corefx/cryptography/x509stores/my/
 ENTRYPOINT ["dotnet", "JapanesePersonGeneratorApi.dll"]
