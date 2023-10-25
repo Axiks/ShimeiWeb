@@ -13,13 +13,7 @@ services:
     container_name: shimei-api
     ports:
         - "448:443"
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=https://+:443;http://+:80
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=$CERT_PASS
-      - ASPNETCORE_Kestrel__Certificates__Default__Path=$CERT_PATH
-    volumes:
-      - ~/.aspnet/https:/https:ro
+
     build:
       context: .
       dockerfile: JapanesePersonGeneratorApi/Dockerfile

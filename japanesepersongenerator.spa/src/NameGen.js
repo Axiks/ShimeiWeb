@@ -1,9 +1,10 @@
-import { Button, Icon, Text, Container, Row, Col, Div } from "atomize";
+import { Button, Icon, Text, Container, Row, Col, Div, Notification } from "atomize";
 import React, { useState, useEffect } from "react";
 
 function NameGen() {
     const [romanjiFullName, setRomanjiFullName] = useState(null);
     const [kanjiFullName, setKanjiFullName] = useState(null);
+    const [personSex, setPersonSex] = useState(null);
 
     useEffect(() => {
         getNewName();
@@ -20,6 +21,7 @@ function NameGen() {
                 var romSurname = data.surname.romanjiName.charAt(0).toUpperCase() + data.surname.romanjiName.slice(1);
                 setRomanjiFullName(romName + ' ' + romSurname);
                 setKanjiFullName(data.kanjiFullName);
+                setPersonSex(data.sex);
             })
             .catch((error) => console.log(error));
     }
@@ -30,20 +32,42 @@ function NameGen() {
     }
 
     function copyToClipboard(e){
-        navigator.clipboard.writeText(romanjiFullName)
+        navigator.clipboard.writeText(romanjiFullName);
     }
 
   return ( 
     <Container>
-    <Text tag="h1" textColor="#724BE3" textAlign="center" textSize="display3" m={{ b: "1rem" }}>
-      {romanjiFullName}
-    </Text>
-    <Text textColor="#724BE3" textAlign="center"  m={{ b: "4rem" }}>
-        {kanjiFullName}
-    </Text>
+      {personSex == 0 ? (
+        <Text tag="h1" textColor="#DB51A1" textAlign="center" textSize="display3" m={{ b: "1rem" }}>
+          {romanjiFullName}
+        </Text>
+      ) : (
+        <Text tag="h1" textColor="#724BE3" textAlign="center" textSize="display3" m={{ b: "1rem" }}>
+          {romanjiFullName}
+        </Text>
+      )}
+
+      {personSex == 0 ? (
+        <Text textColor="#DB51A1" textAlign="center"  m={{ b: "4rem" }}>
+            {kanjiFullName}
+        </Text>
+      ) : (
+        <Text textColor="#724BE3" textAlign="center"  m={{ b: "4rem" }}>
+            {kanjiFullName}
+        </Text>
+      )}
+
     <Div d="flex" justify="center">
       <Button
         onClick={generateSubmit}
+        prefix={
+          <Icon
+              name="Refresh"
+              size="20px"
+              color="info700"
+              m={{ r: "1rem" }}
+          />
+          }
         h="3rem"
         p={{ x: "1.25rem" }}
         textSize="body"
@@ -51,9 +75,7 @@ function NameGen() {
         hoverTextColor="info900"
         bg="white"
         hoverBg="info200"
-        border="1px solid"
-        borderColor="info700"
-        hoverBorderColor="info900"
+
         m={{ r: "0.5rem" }}
       >
         Geneate
@@ -67,14 +89,12 @@ function NameGen() {
         hoverTextColor="info900"
         bg="white"
         hoverBg="info200"
-        border="1px solid"
-        borderColor="info700"
-        hoverBorderColor="info900"
+
         m={{ r: "0.5rem" }}
       >
         Copy
       </Button>
-        </Div>
+    </Div>
   </Container>
   );
 }

@@ -7,17 +7,19 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
+RUN dotnet new webapi -o app
+RUN dotnet dev-certs https
 COPY ["JapanesePersonGeneratorApi/JapanesePersonGeneratorApi.csproj", "JapanesePersonGeneratorApi/"]
 RUN dotnet restore "JapanesePersonGeneratorApi/JapanesePersonGeneratorApi.csproj"
 COPY . .
 WORKDIR "/src/JapanesePersonGeneratorApi"
-RUN dotnet dev-certs https --trust
 RUN dotnet build "JapanesePersonGeneratorApi.csproj" -c Release -o /app/build
 
 FROM build AS publish
 RUN dotnet publish "JapanesePersonGeneratorApi.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
+ENV ASPNETCORE_URLS="https://*:443;http://*:80"
 WORKDIR /app
 COPY --from=publish /app/publish .
 COPY --from=build /root/.dotnet/corefx/cryptography/x509stores/my/* /root/.dotnet/corefx/cryptography/x509stores/my/
