@@ -78,7 +78,7 @@ function NameGen() {
 
         m={{ r: "0.5rem" }}
       >
-        Geneate
+        Generate
       </Button>
       <Button
         onClick={copyToClipboard}
