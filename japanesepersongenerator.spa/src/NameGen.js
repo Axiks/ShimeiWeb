@@ -38,21 +38,21 @@ function NameGen() {
   return ( 
     <Container>
       {personSex == 0 ? (
-        <Text tag="h1" textColor="#DB51A1" textAlign="center" textSize="display3" m={{ b: "1rem" }}>
+        <Text tag="h1" fontFamily="title" textColor="#DB51A1" textAlign="center" textSize="display3" m={{ b: "1rem" }}>
           {romanjiFullName}
         </Text>
       ) : (
-        <Text tag="h1" textColor="#724BE3" textAlign="center" textSize="display3" m={{ b: "1rem" }}>
+        <Text tag="h1" fontFamily="title" textColor="#724BE3" textAlign="center" textSize="display3" m={{ b: "1rem" }}>
           {romanjiFullName}
         </Text>
       )}
 
       {personSex == 0 ? (
-        <Text textColor="#DB51A1" textAlign="center"  m={{ b: "4rem" }}>
+        <Text fontFamily="title" textColor="#DB51A1" textAlign="center"  m={{ b: "4rem" }}>
             {kanjiFullName}
         </Text>
       ) : (
-        <Text textColor="#724BE3" textAlign="center"  m={{ b: "4rem" }}>
+        <Text fontFamily="title" textColor="#724BE3" textAlign="center"  m={{ b: "4rem" }}>
             {kanjiFullName}
         </Text>
       )}
@@ -60,14 +60,14 @@ function NameGen() {
     <Div d="flex" justify="center">
       <Button
         onClick={generateSubmit}
-        prefix={
-          <Icon
-              name="Refresh"
-              size="20px"
-              color="info700"
-              m={{ r: "1rem" }}
-          />
-          }
+        // prefix={
+        //   <Icon
+        //       name="Refresh"
+        //       size="20px"
+        //       color="info700"
+        //       m={{ r: "1rem" }}
+        //   />
+        //   }
         h="3rem"
         p={{ x: "1.25rem" }}
         textSize="body"

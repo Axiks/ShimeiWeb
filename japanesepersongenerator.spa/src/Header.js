@@ -20,7 +20,7 @@ function Header() {
                     shadow="3"
                     hoverShadow="4"
                 >
-                    GitHub
+                    <Text>GitHub</Text>
                 </Button>
             </Anchor>
         </Container>

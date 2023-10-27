@@ -1,0 +1,17 @@
+@font-face {
+    font-family: 'FixelDisplay-Light';
+    src: local('FixelDisplay-Light'),
+         url('./fonts/FixelText-Light.woff2') format('woff2'),
+}
+
+@font-face {
+    font-family: 'FixelDisplay-Regular';
+    src: local('FixelDisplay-Regular'),
+         url('./fonts/FixelText-Regular.woff2') format('woff2'),
+}
+
+@font-face {
+    font-family: 'FixelDisplay-Bold';
+    src: local('FixelDisplay-Bold'),
+         url('./fonts/FixelText-Bold.woff2') format('woff2'),
+}

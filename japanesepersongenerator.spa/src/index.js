@@ -6,6 +6,7 @@ import { Provider as StyletronProvider, DebugEngine } from "styletron-react";
 import { Client as Styletron } from "styletron-engine-atomic";
 import { ThemeProvider, StyleReset, Container } from 'atomize';
 import { Row, Col, Div } from "atomize";
+import './font.css'
 
 
 const theme = {
@@ -14,7 +15,9 @@ const theme = {
     accent: 'yellow',
   },
   fontFamily: {
-    //primary: "fixel",
+    primary: "FixelDisplay-Regular",
+    title: "FixelDisplay-Regular",
+    footer: "FixelDisplay-Light"
   }
 };
 
